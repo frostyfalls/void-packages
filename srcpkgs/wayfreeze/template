@@ -1,0 +1,19 @@
+# Template file for 'wayfreeze'
+_commit=59ac913ebb71920992c52dc1002535b733994397
+pkgname=wayfreeze
+version=20260823
+revision=1
+build_style=cargo
+makedepends="libxkbcommon-devel"
+short_desc="Tool to freeze the screen of a Wayland compositor"
+maintainer="f <f@rvl.onl>"
+license="AGPL-3.0-only"
+homepage="https://github.com/Jappie3/wayfreeze"
+distfiles="https://github.com/Jappie3/wayfreeze/archive/${_commit}.tar.gz"
+checksum=2b13f0b63f63f2770f0a769d60d8c0162fd8d167e20ffe987d319eeb83c60e8a
+
+do_install() {
+	vbin target/x86_64-unknown-linux-gnu/release/wayfreeze
+	vdoc README.md
+	vlicense LICENSE
+}
