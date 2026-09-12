@@ -1,0 +1,29 @@
+# Template file for 'gamja'
+_commit=124d994182db231dc7130833e99a20e395b27363
+pkgname=gamja
+version=20260831
+revision=1
+makedepends="nodejs"
+short_desc="Simple web IRC client"
+maintainer="f <f@rvl.onl>"
+license="AGPL-3.0-only"
+homepage="https://codeberg.org/emersion/gamja"
+distfiles="https://codeberg.org/emersion/gamja/archive/${_commit}.tar.gz"
+checksum=421041bece253db2033727599cf02cb732f1199b4a17802ea8dc5e4259c2a669
+conf_files="/etc/gamja/config.json"
+
+do_build() {
+	npm install --include=dev
+	npm run build
+}
+
+do_install() {
+	vinstall ${FILESDIR}/config.json 644 etc/gamja
+	for x in README.md doc/config-file.md doc/setup.md doc/url-params.md; do
+		vdoc ${x}
+	done
+	vlicense LICENSE
+	vmkdir usr/share/webapps
+	vcopy dist/ usr/share/webapps/gamja
+	ln -s /etc/gamja/config.json ${DESTDIR}/usr/share/webapps/gamja/config.json
+}
