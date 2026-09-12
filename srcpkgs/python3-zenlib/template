@@ -1,0 +1,18 @@
+# Template file for 'python3-zenlib'
+pkgname=python3-zenlib
+version=3.3.0
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-setuptools python3-wheel"
+depends="python3"
+short_desc="Personal Python library"
+maintainer="frosty <f@rvl.onl>"
+license="GPL-2.0-only"
+homepage="https://github.com/desultory/zenlib"
+distfiles="https://github.com/desultory/zenlib/archive/refs/tags/${version}.tar.gz"
+checksum=ae51ed55ae67783d5f7d015a79c303c4a1f70b27defe4bdb1f9c55dea3197c3a
+
+post_install() {
+	vlicense LICENSE
+	vdoc readme.md
+}
