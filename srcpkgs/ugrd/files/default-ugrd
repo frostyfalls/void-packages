@@ -1,0 +1,8 @@
+# disable the ugrd hook
+#UGRD_DISABLE=1
+
+# enable debug logs
+#UGRD_VERBOSE=1
+
+# extra options to pass to ugrd
+UGRD_OPTIONS=""

@@ -1,0 +1,27 @@
+# Template file for 'ugrd'
+pkgname=ugrd
+version=2.2.0
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-setuptools python3-wheel"
+depends="pax-utils coreutils kmod util-linux bc python3-zenlib python3-pycpio"
+short_desc="Python-based POSIX initramfs generator with TOML definitions"
+maintainer="frosty <f@rvl.onl>"
+license="GPL-2.0-only"
+homepage="https://github.com/desultory/ugrd"
+distfiles="https://github.com/desultory/ugrd/archive/refs/tags/${version}.tar.gz"
+checksum=94a86adc6215e2c066d3384c3a5fa40bc0aa87cb786eead1bbb7a2d1c3b83a64
+alternatives="
+ initramfs:/etc/kernel.d/post-install/20-initramfs:/usr/libexec/ugrd/kernel-hook-postinst
+ initramfs:/etc/kernel.d/post-remove/20-initramfs:/usr/libexec/ugrd/kernel-hook-postrm
+"
+conf_files="/etc/ugrd/config.toml"
+
+post_install() {
+	vinstall ${FILESDIR}/kernel-hook-postinst 755 usr/libexec/ugrd
+	vinstall ${FILESDIR}/kernel-hook-postrm 755 usr/libexec/ugrd
+	vinstall examples/example.toml 644 etc/ugrd config.toml
+	vcompletion completion/ugrd bash
+	vcompletion completion/_ugrd zsh
+	vdoc ${FILESDIR}/README.voidlinux
+}

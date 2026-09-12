@@ -1,0 +1,12 @@
+Some features require extra packages:
+
+    cryptsetup: `ugrd.crypto.cryptsetup' support
+    btrfs-progs: `ugrd.fs.btrfs' support
+    gnupg: `ugrd.crypto.gpg' support
+    e2fsprogs: `ugrd.fs.ext4' support
+    f2fs-tools: `ugrd.fs.f2s' support
+    lvm2[lvm]: `ugrd.fs.lvm' support
+    zfs: `ugrd.fs.zfs' support
+    mdadm: `ugrd.fs.mdraid' support
+    plymouth: `ugrd.base.plymouth' support
+    python3-zstandard: Zstd compression support
