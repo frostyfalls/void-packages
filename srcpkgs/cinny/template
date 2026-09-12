@@ -1,0 +1,26 @@
+# Template file for 'cinny'
+pkgname=cinny
+version=4.12.6
+revision=1
+makedepends="nodejs"
+short_desc="Yet another Matrix client"
+maintainer="f <f@rvl.onl>"
+license="AGPL-3.0-only"
+homepage="https://cinny.in/"
+distfiles="https://github.com/cinnyapp/cinny/archive/refs/tags/v${version}.tar.gz"
+checksum=411b35c786ab670894bffeeaa390cb40544dcc02dbb66ba3f094ed2952c7dae9
+conf_files="/etc/cinny/config.json"
+
+do_build() {
+	npm install --include=dev
+	npm run build
+}
+
+do_install() {
+	vinstall config.json 644 etc/cinny
+	vdoc README.md
+	vlicense LICENSE
+	vmkdir usr/share/webapps
+	vcopy dist/ usr/share/webapps/cinny
+	ln -sf /etc/cinny/config.json ${DESTDIR}/usr/share/webapps/cinny/config.json
+}
