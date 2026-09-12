@@ -1,0 +1,18 @@
+# Template file for 'python3-pycpio'
+pkgname=python3-pycpio
+version=1.7.0
+revision=1
+build_style=python3-pep517
+hostmakedepends="python3-setuptools python3-wheel"
+depends="python3 python3-zenlib"
+short_desc="Python library for CPIO manipulation"
+maintainer="frosty <f@rvl.onl>"
+license="GPL-2.0-only"
+homepage="https://github.com/desultory/pycpio"
+distfiles="https://github.com/desultory/pycpio/archive/refs/tags/${version}.tar.gz"
+checksum=64234e0c4221f3c801c793a9cd6e902c93f1b4a8428723dd98b41f3d2a46fdf1
+
+post_install() {
+	vlicense LICENSE
+	vdoc readme.md
+}
