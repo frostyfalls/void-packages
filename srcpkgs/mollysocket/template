@@ -1,0 +1,23 @@
+# Template file for 'mollysocket'
+pkgname=mollysocket
+version=1.7.1
+revision=1
+build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="openssl-devel sqlite-devel"
+short_desc="MollySocket allows getting Signal notifications via UnifiedPush"
+maintainer="f <f@rvl.onl>"
+license="AGPL-3.0-only"
+homepage="https://github.com/mollyim/mollysocket"
+distfiles="https://github.com/mollyim/mollysocket/archive/refs/tags/${version}.tar.gz"
+checksum=b380faf8ca526e92bcbc121d8ac35b88945a6f62b4602dea0df6f7c1f6bfaac7
+system_accounts="_mollysocket"
+conf_files="/etc/mollysocket.conf"
+
+do_install() {
+	vbin target/x86_64-unknown-linux-gnu/release/mollysocket
+	vdoc README.md
+	vlicense LICENSE
+	vsv mollysocket
+	vinstall ${FILESDIR}/mollysocket.conf
+}
