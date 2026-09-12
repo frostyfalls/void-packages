@@ -1,0 +1,27 @@
+# Template file for 'vesktop'
+pkgname=vesktop
+version=1.6.7
+revision=1
+makedepends="nodejs pnpm"
+short_desc="Customizable and privacy friendly Discord desktop app"
+maintainer="frosty <f@rvl.onl>"
+license="GPL-3.0-only"
+homepage="https://vesktop.dev/"
+distfiles="https://github.com/Vencord/Vesktop/archive/refs/tags/v${version}.tar.gz"
+checksum=8c0dbd65e85f46797bc89591a92f8677e2565ea51cd96f661f1dd5da74c819d1
+
+do_build() {
+	pnpm i --frozen-lockfile
+	pnpm package:dir
+}
+
+do_install() {
+	vmkdir usr/lib/vesktop
+	vcopy dist/linux-unpacked/* usr/lib/vesktop
+	vmkdir usr/bin
+	ln -s /usr/lib/vesktop/vesktop ${DESTDIR}/usr/bin/
+	vinstall ${FILESDIR}/vesktop.desktop 644 usr/share/applications
+	vlicense LICENSE
+	vdoc README.md
+	vinstall build/icon.svg 644 usr/share/icons/hicolor/scalable/apps ${pkgname}.svg
+}
