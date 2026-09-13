@@ -15,11 +15,12 @@ alternatives="
  initramfs:/etc/kernel.d/post-install/20-initramfs:/usr/libexec/ugrd/kernel-hook-postinst
  initramfs:/etc/kernel.d/post-remove/20-initramfs:/usr/libexec/ugrd/kernel-hook-postrm
 "
-conf_files="/etc/ugrd/config.toml"
+conf_files="/etc/default/ugrd /etc/ugrd/config.toml"
 
 post_install() {
 	vinstall ${FILESDIR}/kernel-hook-postinst 755 usr/libexec/ugrd
 	vinstall ${FILESDIR}/kernel-hook-postrm 755 usr/libexec/ugrd
+	vinstall ${FILESDIR}/ugrd.default 644 etc/default ugrd
 	vinstall examples/example.toml 644 etc/ugrd config.toml
 	vcompletion completion/ugrd bash
 	vcompletion completion/_ugrd zsh

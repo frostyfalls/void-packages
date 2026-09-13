@@ -7,7 +7,7 @@ VERSION="$2"
 
 . etc/default/ugrd
 
-[ -n ${UGRD_DISABLE} ] && exit 0
+[ -z ${UGRD_DISABLE} ] || exit 0
 
 umask 0077
 usr/bin/ugrd ${UGRD_VERBOSE:+-d} --no-rotate --kver ${VERSION} ${UGRD_OPTIONS} boot/initramfs-${VERSION}.img
