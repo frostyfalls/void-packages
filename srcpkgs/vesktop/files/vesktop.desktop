@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Vesktop
+GenericName=Internet Messenger
+Icon=vesktop
+Exec=vesktop %U
+Terminal=false
+Categories=Network;InstantMessaging;Chat;
+Keywords=discord;chat;
+Comment=Customizable and privacy friendly Discord desktop app
+MimeType=x-scheme-handler/discord
